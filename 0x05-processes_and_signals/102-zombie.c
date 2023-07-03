@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <stdlib.h>
 
 /**
  * infinite_while - a while loop that
@@ -38,7 +39,7 @@ int main(void)
 	{
 		child = fork();
 		if (child > 0)
-			printf("Zombie process created, PID: %d\n", chil);
+			printf("Zombie process created, PID: %d\n", child);
 		else
 			exit(EXIT_FAILURE);
 	}
