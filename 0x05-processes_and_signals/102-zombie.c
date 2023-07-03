@@ -35,7 +35,7 @@ int main(void)
 	int count = 0;
 	pid_t child;
 
-	for (count = 0; count < 6; count++)
+	for (count = 0; count < 5; count++)
 	{
 		child = fork();
 		if (child > 0)
