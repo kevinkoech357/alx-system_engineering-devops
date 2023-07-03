@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script displays Best School 10 times
+
+# Creating and initializing count
+count=10
+
+# Until loop
+until [ $count -eq 0 ]
+do
+  echo "Best School"
+  ((count--))
+done
