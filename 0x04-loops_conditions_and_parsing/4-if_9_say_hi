@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script displays Best School 10 times but in the 9th iteration
+# it displays Hi
+
+# Creating and initializing count
+count=0
+
+# While loop
+while [ $count -lt 10 ]
+do
+  echo "Best School"
+  ((count++))
+# Check for 9th iteration
+  if [ $count -eq 9 ]
+  then
+    echo "Hi"
+  fi
+done
