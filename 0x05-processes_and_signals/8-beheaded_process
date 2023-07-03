@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script kills 7-highlander process
+
+# pkill -9 -f 7-highlander also works.
+# 9 represents SIGKILL signal
+pkill -SIGKILL -f 7-highlander
