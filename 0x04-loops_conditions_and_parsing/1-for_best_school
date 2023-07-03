@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script displays "Best School" 10 times
+
+# Variable assignment
+school="Best School"
+
+# looping while echoing
+for ((i = 0; i <= 10; i++))
+do
+  echo "$school"
+done
