@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script that displays lines containing bash
+# shellcheck disable=SC2009
+
+processes=$(ps faux)
+
+echo "$processes" | grep bash
