@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# A script that shows it's own PID
 echo "$$"
