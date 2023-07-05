@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script implements fizzbuzz
+
+number=1
+
+while [ $number -le 100 ]
+do
+  if ((number % 3 == 0)) && ((number % 5 == 0)); then
+    echo "FizzBuzz"
+  elif ((number % 3 == 0)); then
+    echo "Fizz"
+  elif ((number % 5 == 0)); then
+    echo "Buzz"
+  else
+    echo "$number"
+  fi
+
+  ((number++))
+done
