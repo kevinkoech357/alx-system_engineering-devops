@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script listens on port 98 on localhost
+#  -l = Listen for an incoming connection rather than initiating a connection to a remote host.
+# -p = source_port
+
+# Listening using netcat
+nc -l -p 98
