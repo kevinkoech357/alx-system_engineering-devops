@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script transfers a file from the client to the server
+# Strict host key checking disabled
+
+# Check for command line args
+if [ "$#" -lt 3 ];
+then
+  echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+elif [ "$#" -lt 4 ]
+then
+  scp -o StrictHostKeyChecking=no "$1" "$3"@"$2":~/
+else
+  scp -o StrictHostKeyChecking=no -i "$4" "$1" "$3"@"$2":~/
+fi
