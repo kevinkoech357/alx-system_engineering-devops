@@ -1,0 +1,8 @@
+# This is my config file that connects
+# to a specified server
+
+Host 52.3.255.114
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+    User ubuntu
+
