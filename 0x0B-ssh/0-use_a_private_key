@@ -1,15 +1,4 @@
 #!/usr/bin/env bash
 # This script connects to a server using ssh
 
-# Setting host ip
-host_ip = "52.3.255.114"
-
-# Set the path to private key file
-private_key="~/.ssh/school"
-
-# Setting username to connect with
-user="ubuntu"
-
-# Use ssh to connect
-ssh -i "$private_key" "$user"@"host_ip"
-
+ssh -i ~/.ssh/school ubuntu@52.3.255.114
