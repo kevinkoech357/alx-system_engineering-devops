@@ -11,5 +11,5 @@ private_key="~/.ssh/school"
 user="ubuntu"
 
 # Use ssh to connect
-ssh -i "$private_key" "$user"@""
+ssh -i "$private_key" "$user"@"host_ip"
 
