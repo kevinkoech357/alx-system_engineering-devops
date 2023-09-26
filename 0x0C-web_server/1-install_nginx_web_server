@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script will install nginx server
+# listening on port 80
+# which when queryed at its root
+# returns a page containing "Hello World"
+
+# Update all packages
+sudo apt update -y
+
+# Install nginx
+sudo apt install nginx -y
+
+# Configure return output
+sudo echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Start server
+sudo service nginx start
