@@ -2,7 +2,8 @@
 # to a specified server
 
 Host 52.3.255.114
-    IdentityFile ~/.ssh/school
+    HostName 52.3.255.114
     PasswordAuthentication no
+    IdentityFile ~/.ssh/school
     User ubuntu
 
