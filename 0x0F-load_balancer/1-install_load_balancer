@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Install HAproxy and configure it to send
+# traffic between first and second servers
+# using roundrobin algorithm
+
+# Update packages and nstall version 2.8 HAproxy
+sudo apt update -y
+sudo apt install haproxy=2.8.\*
+
+# Configuring HAproxy
+sudo tee /etc/haproxy/haproxy.cfg > dev/null <<EOT
+
+frontend http_front
+   bind *:80
+   default_backend http_back
+
+backend http_back
+   balance roundrobin
+   server 231147-web-01 34.207.188.213 check
+   server 231147-web-02 52.86.123.235 check
+EOT
+
+# Test HAProxy configuration
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# Start HAProxy
+sudo systemctl start haproxy
+
+# Enable HAProxy to start on boot
+sudo systemctl enable haproxy
+
+
+
+
+
+
+
+
+
+
+
