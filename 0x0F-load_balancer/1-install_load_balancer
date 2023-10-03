@@ -9,6 +9,10 @@ sudo apt-get install haproxy -y
 
 # Configuring HAproxy
 sudo tee /etc/haproxy/haproxy.cfg > dev/null <<EOT
+global
+    daemon
+    maxconn 256
+
 defaults
     mode http
     timeout connect 5000ms
@@ -33,14 +37,3 @@ sudo systemctl start haproxy
 
 # Enable HAProxy to start on boot
 sudo systemctl enable haproxy
-
-
-
-
-
-
-
-
-
-
-
