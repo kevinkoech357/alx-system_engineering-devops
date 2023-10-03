@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# This script configures server-2 to be identical to server-1
+
+# Updating packages and installing nginx
+sudo apt update -y
+sudo apt install nginx -y
+
+# Changing owner to current user for writing permission
+sudo chown -R "$USER":"$USER" /var/www/html/
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/
+
+# Configuring output
+sudo echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+
+# Update config file to redirect
+sed -i "/server_name _;/ a\\\trewrite ^/redirect_me https://www.kevinkoech.tech permanent;" /etc/nginx/sites-available/default
+sed -i "/server_name _;/ a\\\terror_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+
+# Configure custom header
+sed -i "/server_name _;/ a\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+
+# Start engine or restart
+sudo service nginx restart
