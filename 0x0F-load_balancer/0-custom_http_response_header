@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script configures server-2 to be identical to server-1
+#This script configures server-2 to be identical to server-1
 
 # Updating packages and installing nginx
 sudo apt update -y
