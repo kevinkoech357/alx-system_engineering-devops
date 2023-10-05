@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script sets nginx to listen on port 80
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo systemctl restart nginx
+kill "$(pgrep 'nginx' | head -1)"
