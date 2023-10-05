@@ -4,4 +4,4 @@
 # the sites-enabled directory and then restart the Nginx service
 
 cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-nginx
+sudo systemctl restart nginx
