@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script sets nginx to listen on port 80
+# by copying the default Nginx server block configuration file from the sites-available directory to
+# the sites-enabled directory and then restart the Nginx service
+
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+nginx
