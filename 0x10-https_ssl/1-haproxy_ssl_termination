@@ -1,0 +1,31 @@
+# Global configuration section
+global
+    daemon                 # Run HAProxy as a daemon process
+    maxconn 2048           # Maximum concurrent connections HAProxy will accept
+    tune.ssl.default-dh-param 2048 # Size of the Diffie-Hellman parameter for SSL
+
+# Default configuration for all frontends and backends
+defaults
+    mode http                      # Default mode is HTTP
+    timeout connect 5000ms         # Connection timeout for establishing connections to backend servers
+    timeout client 50000ms         # Timeout for client-side connections
+    timeout server 50000ms         # Timeout for server-side connections
+    option forwardfor              # Enable insertion of the X-Forwarded-For header
+    option http-server-close       # Enable closing connections to the backend server after each request
+
+# Frontend for HTTP traffic
+frontend http_front
+    bind *:80                      # Bind to port 80 for HTTP traffic
+    default_backend http_back      # Route incoming HTTP traffic to the http_back backend
+
+# Frontend for HTTPS traffic
+frontend www-https
+    bind *:443 ssl crt /etc/haproxy/certs/www.kevinkoech.tech.pem  # Bind to port 443 for HTTPS traffic and specify SSL certificate
+    default_backend http_back      # Route incoming HTTPS traffic to the http_back backend
+
+# Backend configuration
+backend http_back
+    redirect scheme https if !{ ssl_fc } # Redirect HTTP traffic to HTTPS
+    balance roundrobin           # Use round-robin load balancing
+    server web-01 34.207.188.213  # Backend server 1
+    server web-02 52.86.123.235  # Backend server 2
