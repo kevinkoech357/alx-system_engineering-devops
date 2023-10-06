@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# This script displays info about given subdomains
+
+# Function to display information about a subdomain
+display_info() {
+  local domain="$1"
+  local subdomain="$2"
+  local record_type
+  local destination
+  
+  # Use dig command to query DNS records
+  record_type=$(dig +short -t CNAME "$subdomain.$domain" | awk '{if ($0) print "CNAME"; else print "A"}')
+  destination=$(dig +short "$subdomain.$domain")
+
+  echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+# Check the number of command-line arguments
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 domain [subdomain]"
+  exit 1
+fi
+
+# Get the domain name from the command line
+domain="$1"
+
+# Check if subdomain is provided
+if [ "$#" -eq 2 ]; then
+  subdomain="$2"
+  display_info "$domain" "$subdomain"
+else
+  # Display information for default subdomains in the specified order
+  display_info "$domain" "www"
+  display_info "$domain" "lb-01"
+  display_info "$domain" "web-01"
+  display_info "$domain" "web-02"
+fi
