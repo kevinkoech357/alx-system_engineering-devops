@@ -6,8 +6,8 @@ API and displays dummy data.
 """
 
 # Importing libraries
-import requests
 import json
+import requests
 import sys
 
 
