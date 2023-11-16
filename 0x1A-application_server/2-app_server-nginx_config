@@ -1,0 +1,51 @@
+server { # Listen on port 80 for incoming requests
+rewrite ^/redirect_me kevinkoech.tech permanent;
+rewrite ^/redirect_me kevinkoech.tech permanent;
+rewrite ^/redirect_me kevinkoech.tech permanent; # Listen on IPv6 address
+
+    root /usr/share/nginx/html; # Set the root directory for the server
+
+    index index.html index.htm index.nginx-debian.html; # Specify default index files
+    server_name www.kevinkoech.tech; # managed by Certbot
+ # Catch-all server name
+
+    add_header X-Served-By 231147-web-01; # Add a custom header to responses
+    error_page 404 /custom_404.html; # Define a custom 404 error page
+    rewrite ^/redirect_me https://www.x.com permanent; # Redirect a specific URL
+
+    # Serve static files from /data/web_static/current/ when the URL path starts with /hbnb_static
+    location /hbnb_static/ {
+        alias /data/web_static/current/;
+        index index.html; # Specify the default index file
+    }
+
+    location /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_http_version 1.1;
+    }
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ =404;
+    }
+
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/www.kevinkoech.tech/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/www.kevinkoech.tech/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}server {
+    if ($host = www.kevinkoech.tech) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80 ;
+    listen [::]:80 ;
+    server_name www.kevinkoech.tech;
+    return 404; # managed by Certbot
+}
