@@ -19,7 +19,7 @@ rewrite ^/redirect_me kevinkoech.tech permanent; # Listen on IPv6 address
         index index.html; # Specify the default index file
     }
 
-    location /airbnb-onepage/ {
+    location /airbnb-onepage {
         proxy_pass http://127.0.0.1:5000;
     }
 
